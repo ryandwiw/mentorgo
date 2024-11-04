@@ -1,0 +1,331 @@
+[2024-11-04 04:51:19] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:67)
+[stacktrace]
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php')
+#1 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(931): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(815): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1046): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(751): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1028): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(168): Illuminate\\Foundation\\Application->make('blade.compiler')
+#7 [internal function]: Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}()
+#8 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Engines\\EngineResolver.php(55): call_user_func(Object(Closure))
+#9 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php(326): Illuminate\\View\\Engines\\EngineResolver->resolve('blade')
+#10 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php(288): Illuminate\\View\\Factory->getEngineFromPath('C:\\\\Users\\\\Ryan\\\\D...')
+#11 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Factory.php(160): Illuminate\\View\\Factory->viewInstance('app', 'C:\\\\Users\\\\Ryan\\\\D...', Array)
+#12 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ResponseFactory.php(88): Illuminate\\View\\Factory->make('app', Array)
+#13 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(358): Illuminate\\Routing\\ResponseFactory->view('app', Array)
+#14 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\inertiajs\\inertia-laravel\\src\\Response.php(104): Illuminate\\Support\\Facades\\Facade::__callStatic('view', Array)
+#15 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(902): Inertia\\Response->toResponse(Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(887): Illuminate\\Routing\\Router::toResponse(Object(Illuminate\\Http\\Request), Object(Inertia\\Response))
+#17 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Routing\\Router->prepareResponse(Object(Illuminate\\Http\\Request), Object(Inertia\\Response))
+#18 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#19 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\AddLinkHeadersForPreloadedAssets.php(20): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\AddLinkHeadersForPreloadedAssets->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#21 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\inertiajs\\inertia-laravel\\src\\Middleware.php(86): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#22 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Inertia\\Middleware->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php(51): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken.php(88): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#26 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#27 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Middleware\\ShareErrorsFromSession.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#28 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#29 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(121): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#30 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#31 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#38 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#40 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#41 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#42 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#43 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#45 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#48 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#51 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#52 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#53 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#54 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#55 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#56 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#57 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#58 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#61 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#62 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#63 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#64 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\Ryan\\\\D...')
+#65 {main}
+"} 
+[2024-11-04 04:51:19] local.ERROR: file_put_contents(C:\Users\Ryan\Documents\Project\git\mentorgo\storage\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): file_put_contents(C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\storage\\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php:204)
+[stacktrace]
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(204): file_put_contents('C:\\\\Users\\\\Ryan\\\\D...', 'a:2:{s:6:\"_toke...', 2)
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\FileSessionHandler.php(90): Illuminate\\Filesystem\\Filesystem->put('C:\\\\Users\\\\Ryan\\\\D...', 'a:2:{s:6:\"_toke...', true)
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Store.php(172): Illuminate\\Session\\FileSessionHandler->write('HrWLeK3FJ2KdnuU...', 'a:2:{s:6:\"_toke...')
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(245): Illuminate\\Session\\Store->save()
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(130): Illuminate\\Session\\Middleware\\StartSession->saveSession(Object(Illuminate\\Http\\Request))
+#7 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#8 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#9 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#10 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#11 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#13 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#15 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#17 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#18 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#19 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#38 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#40 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#41 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\Ryan\\\\D...')
+#42 {main}
+"} 
+[2024-11-04 04:51:21] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:51:21] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 04:51:21] local.ERROR: file_put_contents(C:\Users\Ryan\Documents\Project\git\mentorgo\storage\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): file_put_contents(C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\storage\\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php:204)
+[stacktrace]
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(204): file_put_contents('C:\\\\Users\\\\Ryan\\\\D...', 'a:2:{s:6:\"_toke...', 2)
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\FileSessionHandler.php(90): Illuminate\\Filesystem\\Filesystem->put('C:\\\\Users\\\\Ryan\\\\D...', 'a:2:{s:6:\"_toke...', true)
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Store.php(172): Illuminate\\Session\\FileSessionHandler->write('HrWLeK3FJ2KdnuU...', 'a:2:{s:6:\"_toke...')
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(245): Illuminate\\Session\\Store->save()
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(130): Illuminate\\Session\\Middleware\\StartSession->saveSession(Object(Illuminate\\Http\\Request))
+#7 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#8 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#9 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#10 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#11 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#13 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#15 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#17 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#18 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#19 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#38 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#40 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#41 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\Ryan\\\\D...')
+#42 {main}
+"} 
+[2024-11-04 04:51:22] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:51:22] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 04:51:22] local.ERROR: file_put_contents(C:\Users\Ryan\Documents\Project\git\mentorgo\storage\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory {"exception":"[object] (ErrorException(code: 0): file_put_contents(C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\storage\\framework/sessions/HrWLeK3FJ2KdnuUKVRFSrR70TkQB82cqmMLkhptI): Failed to open stream: No such file or directory at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php:204)
+[stacktrace]
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\HandleExceptions.php(256): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#1 [internal function]: Illuminate\\Foundation\\Bootstrap\\HandleExceptions->Illuminate\\Foundation\\Bootstrap\\{closure}(2, 'file_put_conten...', 'C:\\\\Users\\\\Ryan\\\\D...', 204)
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Filesystem\\Filesystem.php(204): file_put_contents('C:\\\\Users\\\\Ryan\\\\D...', 'a:3:{s:6:\"_toke...', 2)
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\FileSessionHandler.php(90): Illuminate\\Filesystem\\Filesystem->put('C:\\\\Users\\\\Ryan\\\\D...', 'a:3:{s:6:\"_toke...', true)
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Store.php(172): Illuminate\\Session\\FileSessionHandler->write('HrWLeK3FJ2KdnuU...', 'a:3:{s:6:\"_toke...')
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(245): Illuminate\\Session\\Store->save()
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(130): Illuminate\\Session\\Middleware\\StartSession->saveSession(Object(Illuminate\\Http\\Request))
+#7 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Session\\Middleware\\StartSession.php(64): Illuminate\\Session\\Middleware\\StartSession->handleStatefulRequest(Object(Illuminate\\Http\\Request), Object(Illuminate\\Session\\Store), Object(Closure))
+#8 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#9 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse.php(37): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#10 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#11 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Cookie\\Middleware\\EncryptCookies.php(75): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#12 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#13 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#14 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(807): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#15 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(786): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#16 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(750): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#17 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php(739): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#18 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(201): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#19 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(144): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#20 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#21 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php(31): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#22 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#23 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php(21): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#24 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php(51): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#25 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\TrimStrings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#26 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\ValidatePostSize.php(27): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#27 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#28 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php(110): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#29 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#30 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php(49): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#31 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\HandleCors->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#32 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php(58): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#33 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Http\\Middleware\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks.php(22): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(183): Illuminate\\Foundation\\Http\\Middleware\\InvokeDeferredCallbacks->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#36 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php(119): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#37 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(176): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#38 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(145): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#39 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1188): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#40 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\public\\index.php(17): Illuminate\\Foundation\\Application->handleRequest(Object(Illuminate\\Http\\Request))
+#41 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('C:\\\\Users\\\\Ryan\\\\D...')
+#42 {main}
+"} 
+[2024-11-04 04:51:58] local.ERROR: Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\View\Compilers\Compiler.php:67
+Stack trace:
+#0 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\View\ViewServiceProvider.php(97): Illuminate\View\Compilers\Compiler->__construct(Object(Illuminate\Filesystem\Filesystem), false, '', true, 'php')
+#1 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Container\Container.php(931): Illuminate\View\ViewServiceProvider->Illuminate\View\{closure}(Object(Illuminate\Foundation\Application), Array)
+#2 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Container\Container.php(815): Illuminate\Container\Container->build(Object(Closure))
+#3 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1046): Illuminate\Container\Container->resolve('blade.compiler', Array, true)
+#4 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Container\Container.php(751): Illuminate\Foundation\Application->resolve('blade.compiler', Array)
+#5 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(1028): Illuminate\Container\Container->make('blade.compiler', Array)
+#6 C:\Users\Ryan\Documents\Project\git\mentorgo\vendor\laravel\framework\src\Illuminate\Foundation\helpers.php(124): Illuminate\Foundation\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\View...')
+#8 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught InvalidArgumentException: Please provide a valid cache path. in C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:67
+Stack trace:
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\ViewServiceProvider.php(97): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false, '', true, 'php')
+#1 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(931): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(815): Illuminate\\Container\\Container->build(Object(Closure))
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1046): Illuminate\\Container\\Container->resolve('blade.compiler', Array, true)
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(751): Illuminate\\Foundation\\Application->resolve('blade.compiler', Array)
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1028): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(124): Illuminate\\Foundation\\Application->make('blade.compiler', Array)
+#7 Command line code(1): app('Illuminate\\\\View...')
+#8 {main}
+  thrown at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\View\\Compilers\\Compiler.php:67)
+[stacktrace]
+#0 {main}
+"} 
+[2024-11-04 04:52:54] local.ERROR: View path not found. {"exception":"[object] (RuntimeException(code: 0): View path not found. at C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\ViewClearCommand.php:59)
+[stacktrace]
+#0 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Foundation\\Console\\ViewClearCommand->handle()
+#1 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(43): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#2 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(95): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#3 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#4 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(690): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#5 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(213): Illuminate\\Container\\Container->call(Array)
+#6 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#7 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(182): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#8 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\symfony\\console\\Application.php(1047): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#9 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\symfony\\console\\Application.php(316): Symfony\\Component\\Console\\Application->doRunCommand(Object(Illuminate\\Foundation\\Console\\ViewClearCommand), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#10 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\symfony\\console\\Application.php(167): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#11 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#12 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1203): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#13 C:\\Users\\Ryan\\Documents\\Project\\git\\mentorgo\\artisan(13): Illuminate\\Foundation\\Application->handleCommand(Object(Symfony\\Component\\Console\\Input\\ArgvInput))
+#14 {main}
+"} 
+[2024-11-04 04:53:38] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:53:38] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 04:53:53] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:53:53] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:53:58] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:53:58] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:54:02] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:54:02] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:54:17] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:54:17] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:54:18] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:54:18] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:57:16] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:57:16] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:57:21] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:57:21] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:57:27] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:57:27] local.INFO: Mentor terautentikasi  
+[2024-11-04 04:57:51] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:57:51] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 04:58:22] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:58:22] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 04:59:49] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 04:59:49] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 05:11:27] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:11:27] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:11:33] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:11:33] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:12:28] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:12:28] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:12] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:12] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:16] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:16] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:22] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:22] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:30] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:30] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:32] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:32] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:13:50] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:50] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 05:13:50] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:13:50] local.INFO: Mentor tidak terautentikasi  
+[2024-11-04 05:39:59] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:39:59] local.INFO: Mentor terautentikasi  
+[2024-11-04 05:40:27] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 05:40:27] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:09:37] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:09:37] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:09:46] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:09:46] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:09:49] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:09:49] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:09:52] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:09:52] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:23:07] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:23:07] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:24:29] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:24:29] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:26:35] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:26:35] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:26:42] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:26:42] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:26:46] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:26:46] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:26:49] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:26:49] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:29:41] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:29:41] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:29:46] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:29:46] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:32:04] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:32:04] local.INFO: Mentor terautentikasi  
+[2024-11-04 06:32:06] local.INFO: Middleware mentor dipanggil  
+[2024-11-04 06:32:06] local.INFO: Mentor terautentikasi  
