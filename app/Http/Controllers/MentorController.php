@@ -54,14 +54,30 @@ class MentorController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // Generate a unique slug
+        $slug = $this->generateUniqueMentorSlug($request->name);
+
         Mentor::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'slug' => Str::slug($request->name),
+            'slug' => $slug,
         ]);
 
         return redirect()->route('mentor.login')->with('success', 'Registration successful. Please log in.');
+    }
+
+    private function generateUniqueMentorSlug($name)
+    {
+        $slug = Str::slug($name);
+        $count = Mentor::where('slug', $slug)->count();
+
+        // If the slug already exists, append a number to make it unique
+        if ($count > 0) {
+            $slug .= '-' . ($count + 1);
+        }
+
+        return $slug;
     }
 
     // Login Mentor

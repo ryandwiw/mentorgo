@@ -49,6 +49,8 @@ class MaterialController extends Controller
         ]);
     }
 
+
+
     public function create()
     {
         $subjects = Subject::all();
@@ -61,26 +63,37 @@ class MaterialController extends Controller
     {
         $request->validate([
             'mentor_id' => 'nullable|exists:mentors,id',
-            'file' => 'required|file|mimes:jpg,png,pdf,mp4|max:2048', // Ubah validasi file
+            'file' => 'nullable|file|mimes:jpg,png,pdf,mp4,mkv|max:2048',
             'subject_id' => 'required|exists:subjects,id',
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'format' => 'required|in:video,pdf,link',
+            'format' => 'nullable|in:video,pdf,link',
+            'link' => 'nullable|string',
         ]);
 
-        // Menyimpan file dan mendapatkan path-nya
-        $filePath = $request->file('file')->store('materials');
-
-        // Menyimpan materi
-        $material = Material::create([
+        // Initialize an array for storing material data
+        $materialData = [
             'mentor_id' => $request->mentor_id,
             'title' => $request->title,
             'content' => $request->content,
             'format' => $request->format,
-            'file' => $filePath, // Menyimpan path file
-        ]);
+        ];
 
-        // Lampirkan subjek ke materi
+        // Handle file upload if the format is video or pdf
+        if ($request->format !== 'link' && $request->hasFile('file')) {
+            $filePath = $request->file('file')->store('materials');
+            $materialData['file'] = $filePath; // Store the file path
+        }
+
+        // Handle link if the format is link
+        if ($request->format === 'link') {
+            $materialData['link'] = $request->link; // Store the link
+        }
+
+        // Create the material
+        $material = Material::create($materialData);
+
+        // Attach subject to material
         if (!empty($request->subject_id)) {
             $material->subjects()->attach($request->subject_id);
         }
@@ -103,35 +116,42 @@ class MaterialController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'format' => 'required|in:video,pdf,link',
-            'file' => 'nullable|file|mimes:jpg,png,pdf,mp4|max:2048', // Ubah validasi file
+            'format' => 'nullable|in:video,pdf,link',
+            'file' => 'nullable|file|mimes:jpg,png,pdf,mp4|max:2048',
+            'link' => 'nullable|url',
             'subject_id' => 'required|exists:subjects,id',
         ]);
 
-        // Jika ada file baru yang diunggah, hapus file lama dan simpan file baru
-        if ($request->hasFile('file')) {
-            // Hapus file lama jika ada
-            if ($material->file) {
-                Storage::delete($material->file);
-            }
-            // Menyimpan file dan mendapatkan path-nya
-            $filePath = $request->file('file')->store('materials');
-            $material->file = $filePath; // Update path file
-        }
-
-        // Update data materi lainnya
-        $material->update([
+        // Update the material data
+        $materialData = [
             'title' => $request->title,
             'content' => $request->content,
             'format' => $request->format,
-            // 'file' => $filePath, // Sudah ditangani di atas
-        ]);
+        ];
+
+        // Handle file upload if the format is video or pdf
+        if ($request->format !== 'link') {
+            if ($request->hasFile('file')) {
+                // Delete old file if it exists
+                if ($material->file) {
+                    Storage::delete($material->file);
+                }
+                $filePath = $request->file('file')->store('materials');
+                $materialData['file'] = $filePath; // Update the file path
+            }
+        } else {
+            // Handle link if the format is link
+            $materialData['link'] = $request->link; // Update the link
+        }
+
+        // Update the material
+        $material->update($materialData);
 
         // Sync subjects with the material
         if (!empty($request->subject_id)) {
             $material->subjects()->sync($request->subject_id);
         } else {
-            $material->subjects()->detach(); // Hapus semua subjek jika tidak ada yang dipilih
+            $material->subjects()->detach(); // Detach if no subject is selected
         }
 
         return redirect()->route('materials.index')->with('success', 'Material updated successfully.');
@@ -139,9 +159,12 @@ class MaterialController extends Controller
 
     public function show(Material $material)
     {
+        $admin = Auth::guard('admin')->user();
+
         $material->load('subjects');
         return inertia('Authenticated/Materials/Show', [
             'material' => $material,
+            'admin' => $admin,
         ]);
     }
 
@@ -149,7 +172,7 @@ class MaterialController extends Controller
     {
         $mentor = Auth::guard('mentor')->user();
         $material->load('subjects');
-        return inertia('Authenticated/Student/Materials/Show', [
+        return inertia('Authenticated/Mentor/Materials/Show', [
             'material' => $material,
             'mentor' => $mentor,
         ]);
@@ -170,4 +193,6 @@ class MaterialController extends Controller
         $material->delete();
         return redirect()->route('materials.index')->with('success', 'Material deleted successfully.');
     }
+
+
 }

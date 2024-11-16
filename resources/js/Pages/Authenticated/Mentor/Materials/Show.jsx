@@ -1,12 +1,20 @@
 import AuthLayout from "@/Layouts/AuthenticatedLayout/AuthLayout";
 import { Link } from "@inertiajs/react";
 import React from "react";
+import { BiArrowBack } from "react-icons/bi";
 
 const Show = ({ material }) => {
     return (
         <AuthLayout>
-            <div className="mx-auto p-8 bg-white rounded-lg shadow-lg max-w-4xl">
-                <h1 className="text-5xl font-bold mb-6 text-center text-gray-800">{material.title}</h1>
+            <Link
+                href={route('mentor.materials.index')}
+                className="inline-flex items-center text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 mb-6"
+            >
+                <BiArrowBack className="w-5 h-5 mr-2" />
+                Kembali
+            </Link>
+            <div className="mx-auto p-6 bg-white rounded-lg shadow-lg">
+                <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">{material.title}</h1>
                 <div className="mb-6">
                     {material.subjects && material.subjects.length > 0 ? (
                         material.subjects.map(subject => (
@@ -15,7 +23,7 @@ const Show = ({ material }) => {
                                     <img
                                         src={`/storage/${subject.profile_matkul}`}
                                         alt="Profile Matkul"
-                                        className="mt-1 w-full h-64 object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
+                                        className="mt-1 w-full h-64 object-cover rounded-lg shadow-md "
                                     />
                                 ) : (
                                     <p className="mt-1 text-gray-600 italic">No image uploaded</p>
@@ -31,7 +39,7 @@ const Show = ({ material }) => {
                     <p className="text-lg text-gray-700 leading-relaxed">{material.content}</p>
                 </div>
 
-                <div className="mb-6 border-t border-gray-200 pt-4">
+                <div className="mb-4 border-t border-gray-200 pt-4">
                     <p className="font-semibold text-lg mb-2">{material.format}</p>
                     {material.file && (
                         <p className="font-medium mb-2">

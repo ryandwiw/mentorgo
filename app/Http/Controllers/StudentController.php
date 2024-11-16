@@ -85,14 +85,30 @@ class StudentController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // Generate a unique slug
+        $slug = $this->generateUniqueStudentSlug($request->name);
+
         Student::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'slug' => Str::slug($request->name),
+            'slug' => $slug,
         ]);
 
         return redirect()->route('student.login')->with('success', 'Registration successful. Please log in.');
+    }
+
+    private function generateUniqueStudentSlug($name)
+    {
+        $slug = Str::slug($name);
+        $count = Student::where('slug', $slug)->count();
+
+        // If the slug already exists, append a number to make it unique
+        if ($count > 0) {
+            $slug .= '-' . ($count + 1);
+        }
+
+        return $slug;
     }
 
     // Login Student

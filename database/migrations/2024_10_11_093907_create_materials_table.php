@@ -17,8 +17,9 @@ return new class extends Migration
             // $table->foreignId('subject_id')->nullable()->constrained('subjects')->onDelete('cascade'); // Relasi ke tabel subjects, nullable
             $table->string('title'); // Judul materi
             $table->text('content'); // Konten materi
-            $table->enum('format', ['video', 'pdf', 'link']); // Format materi
-            $table->string('file');
+            $table->enum('format', ['video', 'pdf', 'link'])->nullable(); // Format materi
+            $table->string('file')->nullable(); // Make file nullable
+            $table->string('link')->nullable(); // Add link column
             $table->timestamps();
         });
     }

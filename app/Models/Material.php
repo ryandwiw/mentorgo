@@ -17,6 +17,7 @@ class Material extends Model
         'format',
         'file',
         'subject_id',
+        'link',
     ];
 
     public function mentor()

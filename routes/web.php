@@ -168,6 +168,7 @@ Route::prefix('admin')->group(function () {
         Route::put('/{slug}', [AdminController::class, 'update'])->name('admin.update');
         Route::get('/{slug}', [AdminController::class, 'show'])->name('admin.show');
         Route::post('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
     });
 });
 

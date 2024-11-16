@@ -22,21 +22,21 @@ class GoogleController extends Controller
 
     public function handleGoogleCallback()
     {
-        $googleUser  = Socialite::driver('google')->user();
+        $googleUser    = Socialite::driver('google')->user();
         $role = session('role'); // Ambil role dari session
 
         if ($role === 'student') {
             // Cek apakah pengguna sudah ada
-            $user = Student::where('email', $googleUser ->getEmail())->first();
+            $user = Student::where('email', $googleUser->getEmail())->first();
 
             if (!$user) {
                 // Buat pengguna baru jika tidak ada
                 $user = Student::create([
-                    'name' => $googleUser ->getName(),
-                    'email' => $googleUser ->getEmail(),
-                    'google_id' => $googleUser ->getId(),
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
                     'password' => bcrypt(Str::random(16)), // Password acak
-                    'slug' => Str::slug($googleUser ->getName()), // Buat slug
+                    'slug' => $this->generateUniqueStudentSlug($googleUser->getName()), // Buat slug unik
                 ]);
             }
 
@@ -46,16 +46,16 @@ class GoogleController extends Controller
 
         } elseif ($role === 'mentor') {
             // Cek apakah pengguna sudah ada
-            $user = Mentor::where('email', $googleUser ->getEmail())->first();
+            $user = Mentor::where('email', $googleUser->getEmail())->first();
 
             if (!$user) {
                 // Buat pengguna baru jika tidak ada
                 $user = Mentor::create([
-                    'name' => $googleUser ->getName(),
-                    'email' => $googleUser ->getEmail(),
-                    'google_id' => $googleUser ->getId(),
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
                     'password' => bcrypt(Str::random(16)), // Password acak
-                    'slug' => Str::slug($googleUser ->getName()), // Buat slug
+                    'slug' => $this->generateUniqueSlug($googleUser->getName()), // Buat slug unik
                 ]);
             }
 
@@ -65,5 +65,31 @@ class GoogleController extends Controller
         }
 
         return redirect('/'); // Redirect ke halaman utama jika role tidak dikenali
+    }
+
+    private function generateUniqueSlug($name)
+    {
+        $slug = Str::slug($name);
+        $count = Mentor::where('slug', $slug)->count();
+
+        // If the slug already exists, append a number to make it unique
+        if ($count > 0) {
+            $slug .= '-' . ($count + 1);
+        }
+
+        return $slug;
+    }
+
+    private function generateUniqueStudentSlug($name)
+    {
+        $slug = Str::slug($name);
+        $count = Student::where('slug', $slug)->count();
+
+        // If the slug already exists, append a number to make it unique
+        if ($count > 0) {
+            $slug .= '-' . ($count + 1);
+        }
+
+        return $slug;
     }
 }
