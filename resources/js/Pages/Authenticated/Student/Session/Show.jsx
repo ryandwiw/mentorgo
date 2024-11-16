@@ -94,7 +94,7 @@ const Show = ({ session, hasActiveBooking, activeBookingId, student, bookings = 
                                         <img
                                             src={
                                                 session.mentor.profile_picture
-                                                    ? `/storage/${student.profile_picture}`
+                                                    ? `/storage/${session.mentor.profile_picture}`
                                                     : '/default-avatar.png'
                                             }
                                             alt={session.mentor.name}

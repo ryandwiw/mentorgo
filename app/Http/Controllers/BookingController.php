@@ -14,7 +14,7 @@ class BookingController extends Controller
     {
         $student = Auth::guard('student')->user();
 
-        $bookings = Booking::with('mentoringSession.mentor')
+        $bookings = Booking::with('mentoringSession.mentor', 'mentoringSession.subject') // Menambahkan subject
             ->where('student_id', $student->id)
             ->orderBy('created_at', 'desc')
             ->get();
@@ -27,7 +27,7 @@ class BookingController extends Controller
 
     public function show($id)
     {
-        $booking = Booking::with('mentoringSession.mentor')->findOrFail($id);
+        $booking = Booking::with('mentoringSession.mentor', 'mentoringSession.subject')->findOrFail($id);
         // $studentId = Auth::guard('student')->id();
         $student = Auth::guard('student')->user();
 

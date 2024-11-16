@@ -163,7 +163,7 @@ const CreateSession = ({ subjects }) => {
         const basePrice90Min = 38500;  // Harga untuk 90 menit untuk 1 siswa
 
         const additionalStudentPrice = 1500;  // Biaya tambahan per siswa setelah siswa pertama
-        const offlineLocationPrice = 5000;    // Biaya tambahan untuk lokasi offline
+        const offlineLocationPrice = 4000;    // Biaya tambahan untuk lokasi offline
 
         let basePrice;
 
