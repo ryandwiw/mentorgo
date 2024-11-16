@@ -341,7 +341,6 @@ export default function MentorEdit({ mentor, subjects }) {
                                         value={data.phone}
                                         className="mt-1 block w-full"
                                         onChange={(e) => setData('phone', e.target.value)}
-                                        required
                                     />
                                     <InputError message={errors.phone} className="mt-2" />
                                 </div>
@@ -393,7 +392,7 @@ export default function MentorEdit({ mentor, subjects }) {
                                         Pilih Mata Pelajaran
                                     </button>
                                     {isDropdownOpen && (
-                                        <div ref={dropdownRef} className="absolute z-10  bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
+                                        <div ref={dropdownRef} className="absolute z-20  bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                                             <ul className="p-3 space-y-3 text-sm text-gray-700 dark:text-gray-200">
                                                 {subjects.map(subject => (
                                                     <li key={subject.id}>
@@ -451,6 +450,11 @@ export default function MentorEdit({ mentor, subjects }) {
                                             value={data.location}
                                             className="mt-1 block w-full"
                                             onChange={(e) => setData('location', e.target.value)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault();
+                                                }
+                                            }}
                                             placeholder="Search location..."
 
                                         />
@@ -515,7 +519,7 @@ export default function MentorEdit({ mentor, subjects }) {
                                 </div>
                             </div>
 
-                            <MapContainer center={mapCenter} zoom={15} className="h-96 w-full ">
+                            <MapContainer center={mapCenter} zoom={15} className="h-96 w-full relative z-10">
                                 <TileLayer
                                     attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
