@@ -137,6 +137,22 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     </>
                                 )}
 
+                                {userType === 'admin' && (
+                                    <>
+                                        <li>
+                                            <a href={route('subjects.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <span className="ml-3">Buat Subjek</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={route('materials.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <span className="ml-3">Buat Materi</span>
+                                            </a>
+                                        </li>
+
+                                    </>
+                                )}
+
                                 {/* Conditional Rendering for Mentors */}
                                 {userType === 'mentor' && (
                                     <>
@@ -228,6 +244,15 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                         </li>
                                     </>
                                 )}
+                                {userType === 'admin' && (
+                                    <>
+                                        <li>
+                                            <a href={route('admin.listakun')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <span className="ml-3">List Akun</span>
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
                         )}
                     </li>
@@ -285,6 +310,20 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     </>
                                 )}
 
+                                {userType === 'admin' && (
+                                    <>
+                                        <li>
+                                            <a href={route(`admin.show`, { slug: user.slug })} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <span className="ml-3">Profile</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={route('admin.setting')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <span className="ml-3">Pengaturan</span>
+                                            </a>
+                                        </li>
+                                    </>
+                                )}
                                 {userType === 'mentor' && (
                                     <>
                                         <li>
@@ -310,7 +349,7 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
 
                     <li>
                         <a
-                            href="#"
+                            href={route(`${userType}.help`)}
                             className="flex items-center p-2 text-base font-medium text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
                         >
                             <svg

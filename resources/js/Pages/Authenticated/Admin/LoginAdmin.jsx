@@ -22,7 +22,7 @@ export default function LoginAdmin() {
     return (
         <GuestLayout>
             <Head title="Login admin" />
-            <div className="bg-slate-50 p-8 rounded-lg shadow-lg max-w-lg mx-auto w-full">
+            <div className="bg-slate-50 p-8 rounded-lg shadow-lg max-w-lg mx-auto w-full my-20">
                 <Link href={route('landing.page')} className="block md:hidden text-sm text-blue-500 hover:underline mb-4">
                     &larr; Kembali
                 </Link>
@@ -74,12 +74,6 @@ export default function LoginAdmin() {
                         </div>
                         <InputError message={errors.password} className="mt-2" />
                     </div>
-                    <div className='flex'>
-                        <Link href="#" className="text-sm text-blue-500 hover :underline cursor-pointer mb-4">
-                            Forgot Password?
-                        </Link>
-                    </div>
-
                     <button className="flex items-center justify-center mt-3 w-48 mx-auto bg-indigo-600 py-2 rounded-2xl text-white font-semibold mb-4" disabled={processing}>
                         Login
                     </button>

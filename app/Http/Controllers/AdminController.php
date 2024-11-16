@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Mentor;
+use App\Models\Student;
+use App\Models\Booking;
+use App\Models\Payment;
+use App\Models\Rating;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,9 +74,41 @@ class AdminController extends Controller
     {
         $admin = Auth::guard('admin')->user();
 
-        // $admins = Admin::all();
+        $mentors = Mentor::all();
+        $students = Student::all();
+        $bookings = Booking::all();
+        $payments = Payment::all();
+        $ratings = Rating::all();
 
         return Inertia::render('Authenticated/Admin/AdminDashboard', [
+            'admin' => $admin,
+            'mentors' => $mentors,
+            'students' => $students,
+            'bookings' => $bookings,
+            'payments' => $payments,
+            'ratings' => $ratings,
+        ]);
+    }
+
+    public function listakun()
+    {
+        $admin = Auth::guard('admin')->user();
+
+        $mentors = Mentor::all();
+        $students = Student::all();
+
+        return Inertia::render('Authenticated/Admin/ListAccount', [
+            'admin' => $admin,
+            'mentors' => $mentors,
+            'students' => $students,
+        ]);
+    }
+
+    public function help()
+    {
+        $admin = Auth::guard('admin')->user();
+
+        return Inertia::render('Authenticated/Admin/Help', [
             'admin' => $admin,
         ]);
     }

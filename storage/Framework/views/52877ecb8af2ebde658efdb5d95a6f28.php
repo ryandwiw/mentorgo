@@ -16,6 +16,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap">
     <!-- Scripts -->
+    
     <?php echo app('Tighten\Ziggy\BladeRouteGenerator')->generate(); ?>
     <?php echo app('Illuminate\Foundation\Vite')->reactRefresh(); ?>
     <?php echo app('Illuminate\Foundation\Vite')(['resources/js/app.jsx', "resources/js/Pages/{$page['component']}.jsx"]); ?>

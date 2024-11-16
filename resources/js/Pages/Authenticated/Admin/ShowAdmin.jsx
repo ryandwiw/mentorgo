@@ -34,13 +34,16 @@ export default function adminShow({ admin }) {
                         </div>
 
                         <div className="text-right mt-4">
-                            <Link
+                            <div className="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+                                Admin Only
+                            </div>
+                            {/* <Link
                                 href={route('admin.edit', { slug: admin.slug })}
                                 className="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
                             >
                                 <FaEdit className="w-4 h-4 mr-2" />
                                 Edit Profile
-                            </Link>
+                            </Link> */}
                         </div>
 
                         <div className="mt-8">

@@ -41,53 +41,40 @@ export default function Settings({ admin }) {
                 </div>
 
 
-                    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden ">
+                <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden ">
 
-                        <Link href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <div >
+                        <div href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700">
                             <div className="flex items-center">
                                 <FaKey className="w-6 h-6 text-gray-500 mr-3" />
                                 <span className="text-lg font-medium text-gray-900 dark:text-white">Change Password</span>
                             </div>
                             <FaChevronRight className="w-5 h-5 text-gray-400" />
-                        </Link>
-
-
-                        <Link href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+                        </div>
+                        <div href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
                             <div className="flex items-center">
                                 <FaLanguage className="w-6 h-6 text-gray-500 mr-3" />
                                 <span className="text-lg font-medium text-gray-900 dark:text-white">Change Language</span>
                             </div>
                             <FaChevronRight className="w-5 h-5 text-gray-400" />
-                        </Link>
-
-
-                        <Link href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+                        </div>
+                        <div href="" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
                             <div className="flex items-center">
                                 <FaFileContract className="w-6 h-6 text-gray-500 mr-3" />
                                 <span className="text-lg font-medium text-gray-900 dark:text-white">Terms and Conditions</span>
                             </div>
                             <FaChevronRight className="w-5 h-5 text-gray-400" />
-                        </Link>
-
-
-                        <Link href={route('admin.delete', admin.slug)} method="delete" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
-                            <div className="flex items-center">
-                                <FaTrash className="w-6 h-6 text-red-500 mr-3" />
-                                <span className="text-lg font-medium text-red-600">Delete Account</span>
-                            </div>
-                            <FaChevronRight className="w-5 h-5 text-gray-400" />
-                        </Link>
-
-
-                        <Link href={route('admin.logout')} method="post" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
-                            <div className="flex items-center">
-                                <FaSignOutAlt className="w-6 h-6 text-gray-500 mr-3" />
-                                <span className="text-lg font-medium text-gray-900 dark:text-white">Logout</span>
-                            </div>
-                            <FaChevronRight className="w-5 h-5 text-gray-400" />
-                        </Link>
+                        </div>
                     </div>
+                    <Link href={route('admin.logout')} method="post" className="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600">
+                        <div className="flex items-center">
+                            <FaSignOutAlt className="w-6 h-6 text-gray-500 mr-3" />
+                            <span className="text-lg font-medium text-gray-900 dark:text-white">Logout</span>
+                        </div>
+                        <FaChevronRight className="w-5 h-5 text-gray-400" />
+                    </Link>
                 </div>
+            </div>
 
         </AuthLayout>
     );

@@ -13,12 +13,15 @@ class MaterialController extends Controller
 {
     public function index()
     {
+        $admin = Auth::guard('admin')->user();
+
         $subjects = Subject::all();
 
         $materials = Material::with('subjects')->get(); // Ambil semua materi dengan relasi subjek
         return inertia('Authenticated/Materials/Index', [
             'materials' => $materials,
             'subjects' => $subjects,
+            'admin' => $admin,
         ]);
     }
 
@@ -53,9 +56,12 @@ class MaterialController extends Controller
 
     public function create()
     {
+        $admin = Auth::guard('admin')->user();
         $subjects = Subject::all();
+
         return inertia('Authenticated/Materials/Create', [
             'subjects' => $subjects,
+            'admin' => $admin,
         ]);
     }
 
@@ -103,11 +109,13 @@ class MaterialController extends Controller
 
     public function edit(Material $material)
     {
+        $admin = Auth::guard('admin')->user();
 
         $subjects = Subject::all()->toArray();
         return inertia('Authenticated/Materials/Edit', [
             'material' => $material,
-            'subjects' => $subjects
+            'subjects' => $subjects,
+            'admin' => $admin,
         ]);
     }
 

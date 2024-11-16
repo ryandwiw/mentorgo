@@ -49,7 +49,7 @@ const Create = () => {
                             />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700">Profile Matkul</label>
+                            <label className="block text-sm font-medium text-gray-700">Foto Matkul</label>
                             <input
                                 type="file"
                                 onChange={e => setData('profile_matkul', e.target.files[0])}

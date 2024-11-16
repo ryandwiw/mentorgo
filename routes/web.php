@@ -161,14 +161,15 @@ Route::prefix('admin')->group(function () {
         Route::put('materials/{material}', [MaterialController::class, 'update'])->name('materials.update');
         Route::delete('materials/{material}', [MaterialController::class, 'destroy'])->name('materials.destroy');
         Route::resource('subjects', SubjectController::class);
-        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+        Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/help', [AdminController::class, 'help'])->name('admin.help');
         Route::get('/settings', [AdminController::class, 'setting'])->name('admin.setting');
-        Route::get('/edit/{slug}', [AdminController::class, 'edit'])->name('admin.edit');
-        Route::put('/{slug}', [AdminController::class, 'update'])->name('admin.update');
+        Route::get('/listakun', [AdminController::class, 'listakun'])->name('admin.listakun');
+        // Route::get('/edit/{slug}', [AdminController::class, 'edit'])->name('admin.edit');
+        // Route::put('/{slug}', [AdminController::class, 'update'])->name('admin.update');
         Route::get('/{slug}', [AdminController::class, 'show'])->name('admin.show');
         Route::post('logout', [AdminController::class, 'logout'])->name('admin.logout');
-
     });
 });
 
