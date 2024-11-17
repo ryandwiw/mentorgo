@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mentor;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\MentorRating;
 use App\Models\MentoringSession;
@@ -21,15 +22,30 @@ class MentorController extends Controller
     {
         $mentor = Auth::guard('mentor')->user();
 
-        // Fetch mentoring sessions for the logged-in mentor along with related online and offline sessions
-        $sessions = MentoringSession::with(['sessionOnline', 'sessionOffline'])
+        // Ambil sesi mentoring untuk mentor yang sedang login, termasuk sesi online dan offline
+        $sessions = MentoringSession::with(['sessionOnline', 'sessionOffline', 'bookings.payments', 'students']) // Memuat relasi yang diperlukan
             ->where('mentor_id', $mentor->id)
             ->orderBy('date', 'desc')
             ->get();
 
+        // Filter sesi aktif yang belum selesai
+        $activeSessions = $sessions->filter(function ($session) {
+            // Pastikan sesi tidak dalam status 'completed'
+            if ($session->is_completed) {
+                return false;
+            }
+
+            return $session->bookings->contains(function ($booking) {
+                return $booking->status === 'confirmed' &&
+                    $booking->payments &&
+                    $booking->payments->status === 'paid';
+            });
+        });
+
         return Inertia::render('Authenticated/Mentor/MentorDashboard', [
             'mentor' => $mentor,
-            'mentoringsessions' => $sessions, // Pass the sessions to the dashboard
+            'mentoringsessions' => $sessions, // Kirim sesi ke dashboard
+            'activeSessions' => $activeSessions->values()->all(), // Kirim sesi aktif jika perlu
         ]);
     }
 
@@ -206,6 +222,31 @@ class MentorController extends Controller
         $mentor = Auth::guard('mentor')->user();
 
         return Inertia::render('Authenticated/Mentor/Help', [
+            'mentor' => $mentor,
+        ]);
+    }
+
+    public function students()
+    {
+        $mentor = Auth::guard('mentor')->user();
+
+        $mentordetails = Student::all();
+
+        return Inertia::render('Authenticated/Mentor/StudentDetail/Index', [
+            'mentordetails' => $mentordetails,
+            'mentor' => $mentor,
+
+        ]);
+    }
+
+    public function studentDetail($slug)
+    {
+        $mentor = Auth::guard('mentor')->user();
+
+        $mentordetail = Student::all()->where('slug', $slug)->firstOrFail();
+
+        return Inertia::render('Authenticated/Mentor/StudentDetail/Show', [
+            'mentordetail' => $mentordetail,
             'mentor' => $mentor,
         ]);
     }

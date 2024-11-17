@@ -132,6 +132,7 @@ class StudentController extends Controller
     {
         $student = Auth::guard('student')->user();
 
+        // Ambil sesi mentoring yang tersedia
         $sessions = MentoringSession::with(['mentor', 'subject']) // Include subject relationship
             ->whereRaw('student_limit - current_participants > 0')
             ->where('status', '!=', 'completed') // Exclude completed sessions
@@ -147,13 +148,35 @@ class StudentController extends Controller
 
         // Check for active bookings
         $hasActiveBooking = Booking::where('student_id', $student->id)
-            ->where('status', 'pending')
+            ->whereIn('status', ['pending']) // Memeriksa status booking yang aktif
+            // ->whereIn('status', ['pending', 'confirmed'])
             ->exists();
+
+        // Check for active sessions with bookings and payments
+        $activeSessions = MentoringSession::with(['mentor', 'sessionOnline', 'sessionOffline'])
+            ->whereHas('bookings', function ($query) use ($student) {
+                $query->where('student_id', $student->id)
+                    ->whereIn('status', ['pending', 'confirmed']) // Include pending bookings
+                    ->whereHas('payments', function ($paymentQuery) {
+                        $paymentQuery->where('status', 'paid'); // Only include paid payments
+                    });
+            })
+            ->whereDoesntHave('bookings.ratings', function ($query) use ($student) {
+                $query->where('student_id', $student->id)
+                    ->where('mentor_id', '<>', null); // Pastikan mentor_id ada
+            })
+            ->with('mentor')
+            ->get();
+
+        // Notifikasi jika ada sesi aktif
+        $hasActiveSessions = $activeSessions->isNotEmpty();
 
         return Inertia::render('Authenticated/Student/StudentDashboard', [
             'student' => $student,
             'sessions' => $sessions,
             'hasActiveBooking' => $hasActiveBooking,
+            'hasActiveSessions' => $hasActiveSessions, // Menambahkan informasi sesi aktif
+            'activeSessions' => $activeSessions, // Menambahkan daftar sesi aktif
         ]);
     }
 

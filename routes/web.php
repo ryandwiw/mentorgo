@@ -51,7 +51,9 @@ Route::prefix('student')->group(function () {
 Route::prefix('mentor')->middleware('mentor')->group(function () {
 
     // localhost:8000/mentor/session => Sessions routes untuk mentor
-
+    Route::post('/sessions/online/{mentoringSessionId}/google-meet', [SessionController::class, 'storeGoogleMeetLink'])
+        ->name('mentor.sessions.online.google-meet.store');
+    // Route::post('/sessions/online/{id}/google-meet', [SessionController::class, 'storeGoogleMeetLink'])->name('mentor.sessions.online.google-meet.store');
     // Route::post('/sessions/online/{bookingId}/google-meet', [SessionController::class, 'storeGoogleMeetLink'])->name('mentor.sessions.online.google-meet.store');
     Route::get('/sessions/ratings', [RatingController::class, 'mentorIndex'])->name('mentor.ratings.index');
     Route::get('/sessions/online/{id}', [SessionController::class, 'mentorShowOnline'])->name('mentor.session.online.show');
@@ -64,6 +66,8 @@ Route::prefix('mentor')->middleware('mentor')->group(function () {
     Route::put('/sessions/{id}', [MentoringSessionController::class, 'update'])->name('mentor.session.update');
     Route::delete('/sessions/{id}', [MentoringSessionController::class, 'destroy'])->name('mentor.session.delete');
 
+    Route::get('/students', [MentorController::class, 'students'])->name('mentor.students.index');
+    Route::get('/students/{slug}', [MentorController::class, 'studentDetail'])->name('mentor.students.show');
 
     Route::get('/bookings', [BookingController::class, 'mentorBookings'])->name('mentor.bookings.index');
     Route::get('/materials', [MaterialController::class, 'indexforMentor'])->name('mentor.materials.index');

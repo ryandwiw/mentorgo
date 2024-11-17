@@ -2,8 +2,10 @@ import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import { format } from 'date-fns';
 import AuthLayout from '@/Layouts/AuthenticatedLayout/AuthLayout';
+import { FaInfoCircle } from 'react-icons/fa';
+import { MdDateRange, MdPerson } from 'react-icons/md';
 
-const MentoringSessionsIndex = () => {
+const MentoringSessionsIndex = ({activeSessions }) => {
     const { mentoringsessions } = usePage().props;
 
     return (
@@ -18,6 +20,55 @@ const MentoringSessionsIndex = () => {
                         Buat Sesi Baru
                     </Link>
                 </div>
+
+                {activeSessions && Array.isArray(activeSessions) && activeSessions.length > 0 ? (
+                    <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-5 mb-6 rounded-lg shadow-lg">
+                        <strong className="font-semibold text-lg flex items-center">
+                            <FaInfoCircle className="mr-2 text-blue-500" />
+                            Anda memiliki sesi mentoring aktif !
+                        </strong>
+                        <ul className="mt-4 space-y-4">
+                            {activeSessions.map((session) => (
+                                <li
+                                    key={session.id}
+                                    className="p-4 bg-white rounded-lg shadow-sm hover:bg-blue-50 transition-all ease-in-out duration-200"
+                                >
+                                    <Link
+                                        href={
+                                            session.session_type === 'online'
+                                                ? ` /sessions/online/${session.id}`
+                                                : ` /sessions/offline/${session.id}`
+                                        }
+                                        className="block hover:text-blue-600"
+                                    >
+                                        <div className="flex flex-col md:flex-row justify-between items-start">
+                                            <div className="flex-1">
+                                                <span className="font-medium text-gray-900 text-lg">
+                                                    {session.title || 'Tidak ada Sesi'}
+                                                </span>
+                                                <div className="text-sm text-gray-600 mt-1">
+
+                                                    <div className="flex items-center mt-1">
+                                                        <MdDateRange className="mr-2 text-blue-400" />
+                                                        {new Date(session.date).toLocaleString() || 'Tidak ada Tanggal'}
+                                                    </div>
+                                                    <div className="flex items-center mt-1">
+                                                        <FaInfoCircle className="mr-2 text-blue-400" />
+                                                        Tipe Sesi: {session.session_type || 'Tidak ada Tipe'}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : (
+                    <div className="bg-gray-100 p-5 rounded-lg shadow-lg">
+                        <p className="text-gray-700">Tidak ada sesi mentoring aktif saat ini.</p>
+                    </div>
+                )}
 
                 {mentoringsessions.length === 0 ? (
                     <p className="text-gray-600">Belum ada sesi mentoring yang dibuat.</p>
@@ -45,18 +96,18 @@ const MentoringSessionsIndex = () => {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                <Link
-                                                    href={route('mentor.session.show', session.id)}
-                                                    className="text-indigo-600 hover:text-indigo-900 mr-3"
-                                                >
-                                                    Detail
-                                                </Link>
-                                                <Link
-                                                    href={route('mentor.session.edit', session.id)}
-                                                    className="text-yellow-600 hover:text-yellow-900"
-                                                >
-                                                    Edit
-                                                </Link>
+                                            <Link
+                                                href={route('mentor.session.show', session.id)}
+                                                className="text-indigo-600 hover:text-indigo-900 mr-3"
+                                            >
+                                                Detail
+                                            </Link>
+                                            <Link
+                                                href={route('mentor.session.edit', session.id)}
+                                                className="text-yellow-600 hover:text-yellow-900"
+                                            >
+                                                Edit
+                                            </Link>
                                         </td>
                                     </tr>
                                 ))}

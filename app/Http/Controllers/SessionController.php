@@ -16,7 +16,7 @@ class SessionController extends Controller
     {
         $student = Auth::guard('student')->user();
         $studentId = Auth::guard('student')->id();
-        $sessionOnline = SessionOnline::with('mentoringSession')->findOrFail($id);
+        $sessionOnline = SessionOnline::with(['mentoringSession.mentor', 'mentoringSession.subject'])->findOrFail($id);
 
         $hasAccess = Booking::where('student_id', $studentId)
             ->where('mentoring_session_id', $sessionOnline->mentoring_session_id)
@@ -27,9 +27,14 @@ class SessionController extends Controller
             return redirect()->route('student.sessions.bookings.index')->withErrors(['error' => 'You do not have access to this session.']);
         }
 
+        // Menghitung rata-rata rating untuk mentor
+        $averageRating = $sessionOnline->mentoringSession->mentor->ratings()->avg('rating'); // Menghitung rata-rata rating
+        $sessionOnline->mentoringSession->mentor->average_rating = $averageRating ?: 0; // Jika tidak ada rating, set 0
+
         return Inertia::render('Authenticated/Student/Session/Online/Online', [
             'sessionOnline' => $sessionOnline,
             'student' => $student,
+            'averageRating' => $sessionOnline->mentoringSession->mentor->average_rating, // Mengirimkan rata-rata rating ke komponen
         ]);
     }
 
@@ -135,27 +140,55 @@ class SessionController extends Controller
             ->with('success', 'Link Google Meet berhasil ditambahkan.');
     }
 
-    public function mentorShowOnline($id)
+    public function storeGoogleMeetLink(Request $request, $mentoringSessionId)
     {
-        $mentor = Auth::guard('mentor')->user();
-        $sessionOnline = SessionOnline::with('mentoringSession.mentor', 'mentoringSession.bookings.student')->findOrFail($id);
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'google_meet_link' => 'required|url',
+        ]);
 
-        // Pastikan sesi ini milik mentor
-        if ($sessionOnline->mentoringSession->mentor_id !== $mentor->id) {
-            return redirect()->route('mentor.session.dashboard')->withErrors(['error' => 'Anda tidak memiliki akses ke sesi ini.']);
+        // Find or create the session_online entry for the given mentoring session
+        $sessionOnline = SessionOnline::firstOrCreate(
+            ['mentoring_session_id' => $mentoringSessionId],
+            ['google_meet_link' => $validated['google_meet_link']]
+        );
+
+        // If the session already exists, update the google_meet_link
+        if (!$sessionOnline->wasRecentlyCreated) {
+            $sessionOnline->google_meet_link = $validated['google_meet_link'];
+            $sessionOnline->save();
         }
 
-        // Ambil booking dan filter yang tidak canceled
-        $bookings = $sessionOnline->mentoringSession->bookings->filter(function ($booking) {
-            return $booking->status !== 'canceled'; // Ganti 'canceled' dengan status yang sesuai
-        });
-
-        return Inertia::render('Authenticated/Mentor/Session/Online/Online', [
-            'sessionOnline' => $sessionOnline,
-            'mentor' => $mentor,
-            'bookings' => $bookings->values()->all(), // Konversi kembali ke array jika diperlukan
-        ]);
+        // Return a response, e.g., redirect back with a success message
+        return redirect()->back()->with('success', 'Google Meet link saved successfully.');
     }
+
+    public function mentorShowOnline($id)
+{
+    $mentor = Auth::guard('mentor')->user();
+    $sessionOnline = SessionOnline::with(['mentoringSession.mentor', 'mentoringSession.subject', 'mentoringSession.bookings.student'])->findOrFail($id);
+
+    // Pastikan sesi ini milik mentor
+    if ($sessionOnline->mentoringSession->mentor_id !== $mentor->id) {
+        return redirect()->route('mentor.session.dashboard')->withErrors(['error' => 'Anda tidak memiliki akses ke sesi ini.']);
+    }
+
+    // Ambil booking dan filter yang tidak canceled
+    $bookings = $sessionOnline->mentoringSession->bookings->filter(function ($booking) {
+        return $booking->status !== 'canceled'; // Ganti 'canceled' dengan status yang sesuai
+    });
+
+    // Menghitung rata-rata rating untuk mentor
+    $averageRating = $sessionOnline->mentoringSession->mentor->ratings()->avg('rating'); // Menghitung rata-rata rating
+    $sessionOnline->mentoringSession->mentor->average_rating = $averageRating ?: 0; // Jika tidak ada rating, set 0
+
+    return Inertia::render('Authenticated/Mentor/Session/Online/Online', [
+        'sessionOnline' => $sessionOnline,
+        'mentor' => $mentor,
+        'bookings' => $bookings->values()->all(), // Konversi kembali ke array jika diperlukan
+        'averageRating' => $sessionOnline->mentoringSession->mentor->average_rating, // Mengirimkan rata-rata rating ke komponen
+    ]);
+}
 
     public function mentorShowOffline($id)
     {

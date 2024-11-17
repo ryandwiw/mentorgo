@@ -52,44 +52,55 @@ class MentoringSessionController extends Controller
 
 
     public function studentShow($id)
-{
-    $student = Auth::guard('student')->user();
-    $session = MentoringSession::with(['mentor', 'subject', 'mentor.ratings'])->findOrFail($id);
+    {
+        $student = Auth::guard('student')->user();
+        $session = MentoringSession::with(['mentor', 'subject', 'mentor.ratings'])->findOrFail($id);
 
-    // Menghitung rating rata-rata
-    $averageRating = $session->mentor->ratings()->avg('rating');
-    $session->mentor->average_rating = $averageRating ?: 0; // Jika tidak ada rating, set 0
+        // Menghitung rating rata-rata
+        $averageRating = $session->mentor->ratings()->avg('rating');
+        $session->mentor->average_rating = $averageRating ?: 0; // Jika tidak ada rating, set 0
 
-    $bookings = Booking::where('student_id', $student->id)->get();
+        $bookings = Booking::where('student_id', $student->id)->get();
 
-    $activeBooking = Booking::where('student_id', $student->id)
-        ->whereIn('status', ['pending', 'confirmed'])
-        ->first();
+        $activeBooking = Booking::where('student_id', $student->id)
+            ->whereIn('status', ['pending', 'confirmed'])
+            ->first();
 
-    $hasActiveBooking = $activeBooking !== null;
-    $activeBookingId = $hasActiveBooking ? $activeBooking->mentoring_session_id : null;
+        $hasActiveBooking = $activeBooking !== null;
+        $activeBookingId = $hasActiveBooking ? $activeBooking->mentoring_session_id : null;
 
-    return Inertia::render('Authenticated/Student/Session/Show', [
-        'session' => $session,
-        'student' => $student,
-        'hasActiveBooking' => $hasActiveBooking,
-        'activeBookingId' => $activeBookingId,
-        'bookings' => $bookings,
-    ]);
-}
+        return Inertia::render('Authenticated/Student/Session/Show', [
+            'session' => $session,
+            'student' => $student,
+            'hasActiveBooking' => $hasActiveBooking,
+            'activeBookingId' => $activeBookingId,
+            'bookings' => $bookings,
+        ]);
+    }
 
     public function mentorSessions()
     {
         $mentor = Auth::guard('mentor')->user();
 
-        $sessions = MentoringSession::with(['sessionOnline', 'sessionOffline'])
+        // Ambil sesi mentoring yang dimiliki oleh mentor
+        $sessions = MentoringSession::with(['sessionOnline', 'sessionOffline', 'bookings.payments']) // Memuat relasi yang diperlukan
             ->where('mentor_id', $mentor->id)
             ->orderBy('date', 'desc')
             ->get();
 
+        // Ambil sesi aktif (yang memiliki booking yang dikonfirmasi dan pembayaran yang sudah dibayar)
+        $activeSessions = $sessions->filter(function ($session) {
+            return $session->bookings->contains(function ($booking) {
+                return $booking->status === 'confirmed' &&
+                       $booking->payments && // Memastikan ada pembayaran
+                       $booking->payments->status === 'paid'; // Memeriksa status pembayaran
+            });
+        });
+
         return Inertia::render('Authenticated/Mentor/Session/MentoringSessions', [
             'mentoringsessions' => $sessions,
             'mentor' => $mentor,
+            'activeSessions' => $activeSessions->values()->all(),
             'student' => null,
         ]);
     }
@@ -191,7 +202,6 @@ class MentoringSessionController extends Controller
             'price' => 'required|numeric|min:0',
             'student_limit' => 'required|integer|min:1',
             'subject_id' => 'nullable|exists:subjects,id',
-
         ]);
 
         $mentoringsession->update($request->all());
@@ -205,7 +215,7 @@ class MentoringSessionController extends Controller
         $mentoringsession = MentoringSession::findOrFail($id);
         $mentoringsession->delete();
 
-        return redirect()->route('mentor.session.dashboard')
+        return redirect()->route('mentor.dashboard')
             ->with('success', 'Sesi mentoring berhasil dihapus.');
     }
 

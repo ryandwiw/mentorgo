@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { FaChalkboardTeacher, FaBook, FaUser, FaClipboardList, FaHistory, FaStar, FaListAlt, FaIdCard, FaCog } from 'react-icons/fa';
 
 const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
 
@@ -116,21 +117,25 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route('student.session.dashboard')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaChalkboardTeacher className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Sesi Mentoring</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('student.sessions.bookings.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaClipboardList className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Pemesanan Saya</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('student.mentors.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaUser Graduate className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Rekomendasi Mentor</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('student.materials.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaBook className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Lihat Materi</span>
                                             </a>
                                         </li>
@@ -141,15 +146,16 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route('subjects.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaBook className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Buat Subjek</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('materials.index')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaClipboardList className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Buat Materi</span>
                                             </a>
                                         </li>
-
                                     </>
                                 )}
 
@@ -158,20 +164,22 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route('mentor.session.dashboard')} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaChalkboardTeacher className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Sesi Mentoring</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href={route('mentor.dashboard')} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                                                <span className="ml-3">Manage Sessions</span>
+                                            <a href={route('mentor.students.index')} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaUser className="w-5 h-5 text-gray-500 mr-3" />
+                                                <span className="ml-3">List Student</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('mentor.materials.index')} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaBook className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Materi</span>
                                             </a>
                                         </li>
-
                                     </>
                                 )}
                             </ul>
@@ -219,11 +227,13 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route(`student.payments.index`)} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaHistory className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Riwayat Pembayaran</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route(`student.ratings.index`)} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaStar className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Riwayat Review</span>
                                             </a>
                                         </li>
@@ -234,20 +244,24 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route(`mentor.bookings.index`)} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaUser Friends className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Riwayat Booking Sesi</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route(`mentor.ratings.index`)} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaStar className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Riwayat Review</span>
                                             </a>
                                         </li>
                                     </>
                                 )}
+
                                 {userType === 'admin' && (
                                     <>
                                         <li>
                                             <a href={route('admin.listakun')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaListAlt className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">List Akun</span>
                                             </a>
                                         </li>
@@ -299,11 +313,13 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route(`student.show`, { slug: user.slug })} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaIdCard className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Profile</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('student.setting')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaCog className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Pengaturan</span>
                                             </a>
                                         </li>
@@ -314,25 +330,30 @@ const Aside = ({ isOpen, user, userType, mentor, slug, admin }) => {
                                     <>
                                         <li>
                                             <a href={route(`admin.show`, { slug: user.slug })} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaIdCard className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Profile</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('admin.setting')} className="flex items-center p-2 pl-8 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaCog className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Pengaturan</span>
                                             </a>
                                         </li>
                                     </>
                                 )}
+
                                 {userType === 'mentor' && (
                                     <>
                                         <li>
                                             <a href={route(`mentor.show`, { slug: user.slug })} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaIdCard className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Profile</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href={route('mentor.setting')} className="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                                                <FaCog className="w-5 h-5 text-gray-500 mr-3" />
                                                 <span className="ml-3">Pengaturan</span>
                                             </a>
                                         </li>

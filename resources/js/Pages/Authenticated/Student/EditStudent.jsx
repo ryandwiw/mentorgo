@@ -368,7 +368,11 @@ export default function StudentEdit({ student }) {
                                             className="mt-1 block w-full"
                                             onChange={(e) => setData('location', e.target.value)}
                                             placeholder="Search location..."
-
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.preventDefault(); // Prevent form submission on Enter
+                                                }
+                                            }}
                                         />
                                         <button
                                             type="button"
