@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MentoringSession;
 use Illuminate\Http\Request;
 use App\Models\Booking;
+use App\Models\Material;
 use App\Models\Subject;
 use App\Models\SessionOffline;
 use App\Models\SessionOnline;
@@ -24,7 +25,7 @@ class MentoringSessionController extends Controller
             ->exists();
 
         // Get available mentoring sessions that do not have canceled bookings by the student
-        $sessions = MentoringSession::with(['mentor', 'subject']) // Include the subject relationship
+        $sessions = MentoringSession::with(['mentor', 'subject', 'mentor.ratings']) // Include the subject relationship
             ->where(function ($query) use ($student) {
                 $query->whereRaw('student_limit - current_participants > 0')
                     ->whereDoesntHave('bookings', function ($query) use ($student) {
@@ -34,6 +35,16 @@ class MentoringSessionController extends Controller
             })
             ->orderBy('date', 'desc')
             ->get();
+
+        $sessions->transform(function ($session) {
+            // Menghitung rata-rata rating
+            $averageRating = $session->mentor->ratings()->avg('rating');
+
+            // Menggunakan null coalescing operator untuk menetapkan average_rating
+            $session->mentor->average_rating = $averageRating ?? 0; // Jika tidak ada rating, set 0
+
+            return $session;
+        });
 
         // Get the mentor_id from the sessions
         $mentorId = $sessions->first()->mentor_id ?? null;
@@ -92,8 +103,8 @@ class MentoringSessionController extends Controller
         $activeSessions = $sessions->filter(function ($session) {
             return $session->bookings->contains(function ($booking) {
                 return $booking->status === 'confirmed' &&
-                       $booking->payments && // Memastikan ada pembayaran
-                       $booking->payments->status === 'paid'; // Memeriksa status pembayaran
+                    $booking->payments && // Memastikan ada pembayaran
+                    $booking->payments->status === 'paid'; // Memeriksa status pembayaran
             });
         });
 
@@ -109,9 +120,11 @@ class MentoringSessionController extends Controller
     {
         $mentor = Auth::guard('mentor')->user();
         $subjects = Subject::all();
+        $materials = Material::all();
         return Inertia::render('Authenticated/Mentor/Session/CreateSession', [
             'mentor' => $mentor,
             'subjects' => $subjects,
+            'materials' => $materials,
         ]);
     }
 
@@ -128,7 +141,7 @@ class MentoringSessionController extends Controller
             'price' => 'required|numeric|min:0',
             'student_limit' => 'required|integer|min:1',
             'subject_id' => 'nullable|exists:subjects,id',
-
+            'material_id' => 'nullable|exists:materials,id',
         ]);
 
         $mentoring = MentoringSession::create([
@@ -146,6 +159,7 @@ class MentoringSessionController extends Controller
             'current_participants' => 0,
             'status' => 'available',
             'subject_id' => $validated['subject_id'],
+            'material_id' => $validated['material_id'],
         ]);
 
         if ($validated['session_type'] === 'offline') {
@@ -178,12 +192,14 @@ class MentoringSessionController extends Controller
     {
         $mentor = Auth::guard('mentor')->user();
         $subjects = Subject::all();
+        $materials = Material::all();
         $mentoringsession = MentoringSession::findOrFail($id);
 
         return Inertia::render('Authenticated/Mentor/Session/EditSession', [
             'mentoringsession' => $mentoringsession,
             'mentor' => $mentor,
             'subjects' => $subjects,
+            'materials' => $materials,
         ]);
     }
 
@@ -202,6 +218,7 @@ class MentoringSessionController extends Controller
             'price' => 'required|numeric|min:0',
             'student_limit' => 'required|integer|min:1',
             'subject_id' => 'nullable|exists:subjects,id',
+            'material_id' => 'nullable|exists:materials,id',
         ]);
 
         $mentoringsession->update($request->all());

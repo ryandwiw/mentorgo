@@ -1,3 +1,4 @@
+import { Link } from "@inertiajs/react";
 
 const Newsletter = () => {
     return (
@@ -14,8 +15,13 @@ const Newsletter = () => {
                             </h3>
 
                             <div>
-                                <div className="relative flex justify-center items-center pt-5 lg:pt-0"><button
-                                 type="submit" className=" p-8 lg:p-8 text-lg font-semibold text-ultramarine bg-white hover:bg-midnightblue hover:text-white active:bg-ultramarine active:text-white rounded-full focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">Daftar</button>
+                                <div className="relative flex justify-center items-center pt-5 lg:pt-0">
+                                    <Link
+                                        href={route('student.login')}
+                                        className=" p-8 lg:p-8 text-lg font-semibold text-ultramarine bg-white hover:bg-midnightblue hover:text-white active:bg-ultramarine active:text-white rounded-full focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+                                    >
+                                        Daftar
+                                    </Link>
                                 </div>
                             </div>
                         </div>

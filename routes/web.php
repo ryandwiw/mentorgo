@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\PaymentController;
@@ -50,6 +51,9 @@ Route::prefix('student')->group(function () {
 
 Route::prefix('mentor')->middleware('mentor')->group(function () {
 
+    Route::get('/chat/{mentorId}', [ChatController::class, 'indexmentor'])->name('mentor.chat.index');
+    Route::post('/chat', [ChatController::class, 'storementor'])->name('mentor.chat.store');
+
     // localhost:8000/mentor/session => Sessions routes untuk mentor
     Route::post('/sessions/online/{mentoringSessionId}/google-meet', [SessionController::class, 'storeGoogleMeetLink'])
         ->name('mentor.sessions.online.google-meet.store');
@@ -85,6 +89,9 @@ Route::prefix('mentor')->middleware('mentor')->group(function () {
 });
 
 Route::prefix('student')->middleware('student')->group(function () {
+
+    Route::get('/chat/{mentorId}', [ChatController::class, 'index'])->name('student.chat.index');
+    Route::post('/chat', [ChatController::class, 'store'])->name('student.chat.store');
 
     // localhost:8000/student/sessions/bookings =>  Booking order jasa  routes untuk student
     Route::prefix('sessions/bookings')->name('student.sessions.bookings.')->group(function () {

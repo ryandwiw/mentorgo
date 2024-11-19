@@ -24,13 +24,13 @@ const Create = ({ booking }) => {
 
     return (
         <AuthLayout>
-            <section className=" py-8 antialiased dark:bg-gray-900 md:py-16">
-                <div className="mx-auto max-w-3xl bg-white p-8 rounded-lg">
+            <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
+                <div className="mx-auto max-w-3xl bg-white p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out">
                     <div className="flex justify-between items-center mb-4">
                         <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Order Summary</h2>
                         <Link
                             href={route('student.sessions.bookings.index')}
-                            className="text-blue-500 hover:text-blue-600 transition duration-200"
+                            className="text-blue-500 hover:text-blue-600 transition duration-200 transform hover:scale-105"
                         >
                             Kembali ke Daftar
                         </Link>
@@ -57,7 +57,7 @@ const Create = ({ booking }) => {
 
                             <dl>
                                 <dt className="text-base font-medium text-gray-900 dark:text-white">Total Amount</dt>
-                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400"> {formatRupiah(booking.total_price)}</dd>
+                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{formatRupiah(booking.total_price)}</dd>
                             </dl>
 
                             <div className="mb-6">
@@ -65,7 +65,7 @@ const Create = ({ booking }) => {
                                 <select
                                     value={data.payment_method}
                                     onChange={e => setData('payment_method', e.target.value)}
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+                                    className="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 hover:border-blue-500"
                                     required
                                 >
                                     <option value="credit_card">Credit Card</option>
@@ -79,7 +79,7 @@ const Create = ({ booking }) => {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className={`w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    className={`w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover :text-white dark:focus:ring-gray-700 transition duration-200 transform hover:scale-105 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                                 >
                                     {processing ? 'Processing ...' : 'Bayar'}
                                 </button>

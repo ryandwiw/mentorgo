@@ -135,7 +135,7 @@ const LocationMarker = ({ position, onLocationSelect }) => {
 
 
 
-const CreateSession = ({ subjects }) => {
+const CreateSession = ({ subjects , materials }) => {
     const { data, setData, post, errors, processing } = useForm({
         title: '',
         description: '',
@@ -148,7 +148,10 @@ const CreateSession = ({ subjects }) => {
         latitude: '',
         longitude: '',
         subject_id: '',
+        material_id: '',
     });
+
+    console.log(materials);
 
     const [mapCenter, setMapCenter] = useState([-6.200000, 106.816666]);
     const [showMap, setShowMap] = useState(false);
@@ -206,7 +209,7 @@ const CreateSession = ({ subjects }) => {
     useEffect(() => {
         const newPrice = calculatePrice(data.student_limit, data.duration, data.session_type);
         setData((prevData) => ({ ...prevData, price: newPrice }));
-    }, [data.duration, data.student_limit, data.session_type]);  // Tambahkan session_type sebagai dependency
+    }, [data.duration, data.student_limit, data.session_type]);
 
     // Update data ketika durasi atau batas siswa berubah
     const handleDurationChange = (e) => {
@@ -256,7 +259,7 @@ const CreateSession = ({ subjects }) => {
                 latitude: lat.toString(),
                 longitude: lng.toString()
             }));
-            setMapCenter([lat, lng]); // Update map center
+            setMapCenter([lat, lng]);
 
             const geoData = await reverseGeocode(lat, lng);
             if (geoData && geoData.address) {
@@ -279,13 +282,12 @@ const CreateSession = ({ subjects }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validasi untuk memastikan subject_id dipilih
         if (!data.subject_id) {
             alert("Silakan pilih mata pelajaran.");
             return;
         }
 
-        console.log("Data yang akan dikirim:", data); // Log data untuk debugging
+        console.log("Data yang akan dikirim:", data);
 
         post('/mentor/sessions', {
             onSuccess: () => {
@@ -351,6 +353,27 @@ const CreateSession = ({ subjects }) => {
                             </select>
                             {errors.subject_id && (
                                 <div className="text-red-500 text-sm mt-1">{errors.subject_id}</div>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Materi ( Opsional )
+                            </label>
+                            <select
+                                value={data.material_id} // Bind the selected value to material_id in the state
+                                onChange={e => setData('material_id', e.target.value)} // Update the state on selection change
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Pilih Materi (Opsional)</option> {/* Placeholder option */}
+                                {materials.map(material => ( // Map over the materials array to create options
+                                    <option key={material.id} value={material.id}>
+                                        {material.title}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.material_id && ( // Display error message if there's an error
+                                <div className="text-red-500 text-sm mt-1">{errors.material_id}</div>
                             )}
                         </div>
 

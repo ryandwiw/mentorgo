@@ -4,7 +4,7 @@ import { Link, useForm } from '@inertiajs/react';
 import React from 'react';
 import { FaUniversity } from 'react-icons/fa';
 
-const Online = ({ sessionOnline, averageRating }) => {
+const Online = ({ sessionOnline, average_rating, material }) => {
     const { post } = useForm();
 
     const handleCompleteSession = (sessionId) => {
@@ -21,20 +21,20 @@ const Online = ({ sessionOnline, averageRating }) => {
     return (
         <AuthLayout>
             <section className='py-8 antialiased dark:bg-gray-900 md:py-16'>
-                <div className="mx-auto max-w-3xl bg-white p-8 rounded-lg">
+                <div className="mx-auto max-w-3xl bg-white p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105 duration-300 ease-in-out">
                     <div className="flex justify-between">
                         <h1 className="text-2xl font-semibold text-gray-900 dark:text-white">Sesi Online</h1>
                         <Link
                             href={route('student.session.dashboard')}
-                            className="text-blue-500 hover:text-blue-600"
+                            className="text-blue-500 hover:text-blue-600 transition duration-200"
                         >
                             Kembali ke Daftar
                         </Link>
                     </div>
                     {sessionOnline.mentoring_session ? (
                         <div className="mt-6 space-y-4 border-b border-t border-gray-200 py-8 dark:border-gray-700 sm:mt-8">
-                            <dl className='text-3xl text-center text-black '>
-                                <dd className="mt-1 font-bold ">{sessionOnline.mentoring_session.title}</dd>
+                            <dl className='text-3xl text-center text-black'>
+                                <dd className="mt-1 font-bold">{sessionOnline.mentoring_session.title}</dd>
                             </dl>
                             <dl>
                                 <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
@@ -42,14 +42,14 @@ const Online = ({ sessionOnline, averageRating }) => {
                                         <img
                                             src={`/storage/${sessionOnline.mentoring_session.subject.profile_matkul}`}
                                             alt={sessionOnline.mentoring_session.subject.name}
-                                            className="m-auto clipPath w-full h-64 object-cover"
+                                            className="m-auto w-full h-64 object-cover rounded-md transition-transform duration-300 hover:scale-105"
                                         />
                                     )}
                                 </dd>
                             </dl>
 
-                            <Link href={`/student/mentors/${sessionOnline.mentoring_session.mentor.slug}`} className='relative group '>
-                                <div className="my-5  border-t border-b py-5">
+                            <Link href={`/student/mentors/${sessionOnline.mentoring_session.mentor.slug}`} className='relative group'>
+                                <div className="my-5 border-t border-b py-5">
                                     <h3 className="text-lg font-medium text-gray-600">Informasi Mentor</h3>
                                     <div className="flex items-center mt-4">
                                         <img
@@ -73,7 +73,7 @@ const Online = ({ sessionOnline, averageRating }) => {
                                         </div>
                                     </div>
                                 </div>
-                                <span className="absolute  transform translate-x-3/4 -translate-y-9 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <span className="absolute transform translate-x-3/4 -translate-y-9 bg-black text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     Lihat lebih detail
                                 </span>
                             </Link>
@@ -89,14 +89,14 @@ const Online = ({ sessionOnline, averageRating }) => {
                             </dl>
 
                             <dl>
-                                <dt className="text-base font-medium text-gray-900 dark:text-white">Google Meet Link</dt>
+                                <dt className="text-base font-medium text-gray-900 dark:text-white"> Google Meet Link</dt>
                                 <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
                                     {sessionOnline.google_meet_link ? (
                                         <a
                                             href={sessionOnline.google_meet_link}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-blue-500 hover:text-green-500"
+                                            className="text-blue-500 hover:text-green-500 transition duration-200"
                                         >
                                             {sessionOnline.google_meet_link}
                                         </a>
@@ -129,7 +129,7 @@ const Online = ({ sessionOnline, averageRating }) => {
                             <div className="flex justify-center gap-4 sm:flex sm:items-center">
                                 <button
                                     onClick={() => handleCompleteSession(sessionOnline.id)}
-                                    className="w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                                    className="w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 transition duration-200"
                                 >
                                     Complete Session
                                 </button>

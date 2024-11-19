@@ -76,6 +76,7 @@ export default function Index({ sessions, hasActiveBooking }) {
                                         onOpenModal={handleCreateSessionClick}
                                         isProfileComplete={isProfileComplete}
                                         user={student} role="student"
+                                        average_rating={session.mentor.average_rating}
                                     />
                                 );
                             })

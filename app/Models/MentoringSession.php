@@ -24,6 +24,7 @@ class MentoringSession extends Model
         'current_participants',
         'status',
         'subject_id',
+        'material_id',
     ];
 
     protected $casts = [
@@ -81,5 +82,10 @@ class MentoringSession extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function material()
+    {
+        return $this->belongsTo(Material::class);
     }
 }

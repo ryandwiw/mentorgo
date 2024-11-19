@@ -40,7 +40,6 @@ const Show = ({ material }) => {
                 </div>
 
                 <div className="mb-4 border-t border-gray-200 pt-4">
-                    <p className="font-semibold text-lg mb-2">{material.format}</p>
                     {material.file && (
                         <p className="font-medium mb-2">
                             <strong>File:</strong> <a href={material.file} className="text-blue-600 hover:underline">Download File</a>

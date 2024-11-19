@@ -65,16 +65,7 @@ const Account = ({ isOpen, toggleDropdown, user, userType, mentor , admin }) => 
                             Settings
                         </a>
                     </li>
-                    {mentor && (
-                        <li>
-                            <a
-                                href=""
-                                className="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white"
-                            >
-                                My Subjects
-                            </a>
-                        </li>
-                    )}
+
                 </ul>
 
                 <ul className="py-1 text-gray-700 dark:text-gray-300">

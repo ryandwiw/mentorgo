@@ -133,18 +133,24 @@ class StudentController extends Controller
         $student = Auth::guard('student')->user();
 
         // Ambil sesi mentoring yang tersedia
-        $sessions = MentoringSession::with(['mentor', 'subject']) // Include subject relationship
+        $sessions = MentoringSession::with(['mentor', 'subject','mentor.ratings']) // Include subject relationship
             ->whereRaw('student_limit - current_participants > 0')
             ->where('status', '!=', 'completed') // Exclude completed sessions
             ->orderBy('date', 'desc')
             ->get();
 
+
         // Menghitung rata-rata rating untuk setiap mentor
         $sessions->transform(function ($session) {
-            $averageRating = $session->mentor->ratings()->avg('rating'); // Menghitung rata-rata rating
-            $session->mentor->average_rating = $averageRating ?: 0; // Jika tidak ada rating, set 0
+            // Menghitung rata-rata rating
+            $averageRating = $session->mentor->ratings()->avg('rating');
+
+            // Menggunakan null coalescing operator untuk menetapkan average_rating
+            $session->mentor->average_rating = $averageRating ?? 0; // Jika tidak ada rating, set 0
+
             return $session;
         });
+
 
         // Check for active bookings
         $hasActiveBooking = Booking::where('student_id', $student->id)

@@ -110,7 +110,7 @@ const MultipleItems = () => {
             <div className='mx-auto max-w-7xl sm:py-8 px-4 lg:px-8 '>
                 <div className="sm:flex justify-between items-center">
                     <h3 className="text-midnightblue text-4xl lg:text-55xl font-semibold mb-5 sm:mb-0">Bimbingan Mentoring Terpopuler</h3>
-                    <Link href={'/'} className="text-Blueviolet text-lg font-medium space-links">Cari bimbingan&nbsp;&gt;&nbsp;</Link>
+                    <Link href={route('student.login')} className="text-Blueviolet text-lg font-medium space-links">Cari bimbingan&nbsp;&gt;&nbsp;</Link>
                 </div>
 
                 <Slider {...settings}>
@@ -120,7 +120,7 @@ const MultipleItems = () => {
                                 <div className="relative rounded-3xl">
                                     <img src={items.imgSrc} alt="course image" width={389} height={262} className="m-auto clipPath" />
                                     <div className="absolute right-5 -bottom-2 bg-ultramarine rounded-full p-6">
-                                        <a href="URL_TUJUAN" className="text-white uppercase text-center text-sm font-medium block">
+                                        <a href={route('student.login')} className="text-white uppercase text-center text-sm font-medium block">
                                             Ikuti <br /> Kelas</a>
                                     </div>
                                 </div>

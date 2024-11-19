@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('mentor_id')->constrained('mentors')->onDelete('cascade'); // Menghubungkan ke tabel mentors
             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
+            $table->foreignId('material_id')->nullable()->constrained('materials')->onDelete('set null');
             $table->string('title'); // Judul sesi mentoring
             $table->text('description'); // Deskripsi sesi mentoring
             $table->enum('session_type', ['online', 'offline']); // Tipe sesi

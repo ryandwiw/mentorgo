@@ -127,7 +127,7 @@ const LocationMarker = ({ position, onLocationSelect }) => {
     return null;
 };
 
-const EditSession = ({ mentoringsession }) => {
+const EditSession = ({ mentoringsession , subjects, materials}) => {
     const { data, setData, put, errors, processing } = useForm({
         title: mentoringsession.title,
         description: mentoringsession.description,
@@ -139,6 +139,8 @@ const EditSession = ({ mentoringsession }) => {
         status: mentoringsession.status,
         latitude: mentoringsession.latitude,
         longitude: mentoringsession.longitude,
+        subject_id: mentoringsession.subject_id,
+        material_id: mentoringsession.material_id,
     });
 
     const [mapCenter, setMapCenter] = useState([parseFloat(mentoringsession.latitude) || -6.200000, parseFloat(mentoringsession.longitude) || 106.816666]);
@@ -307,6 +309,49 @@ const EditSession = ({ mentoringsession }) => {
                             />
                             {errors.title && (
                                 <div className="text-red-500 text-sm mt-1">{errors.title}</div>
+                            )}
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Mata Pelajaran
+                            </label>
+                            <select
+                                value={data.subject_id}
+                                onChange={e => setData('subject_id', e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Pilih Mata Pelajaran</option>
+                                {subjects.map(subject => (
+                                    <option key={subject.id} value={subject.id}>
+                                        {subject.name}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.subject_id && (
+                                <div className="text-red-500 text-sm mt-1">{errors.subject_id}</div>
+                            )}
+                        </div>
+
+                        {/* Pemilihan Materi (Opsional) */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Materi (Opsional)
+                            </label>
+                            <select
+                                value={data.material_id}
+                                onChange={e => setData('material_id', e.target.value)}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                                <option value="">Pilih Materi (Opsional)</option>
+                                {materials.map(material => (
+                                    <option key={material.id} value={material.id}>
+                                        {material.title}
+                                    </option>
+                                ))}
+                            </select>
+                            {errors.material_id && (
+                                <div className="text-red-500 text-sm mt-1">{errors.material_id}</div>
                             )}
                         </div>
 

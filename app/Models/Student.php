@@ -46,4 +46,9 @@ class Student extends Model implements AuthenticatableContract
     {
         return $this->belongsToMany(MentoringSession::class);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }

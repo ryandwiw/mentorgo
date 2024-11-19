@@ -70,4 +70,9 @@ class Mentor extends Model implements AuthenticatableContract
     {
         return $this->subjects()->detach($subjectId);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
 }

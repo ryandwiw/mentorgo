@@ -57,7 +57,6 @@ const Show = ({ session, hasActiveBooking, activeBookingId, student, bookings = 
     return (
         <AuthLayout>
             <div className="container mx-auto px-4 py-8">
-
                 <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
                     <div className="px-6 py-4 border-b border-gray-200">
                         <div className="flex justify-between items-center">

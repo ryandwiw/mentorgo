@@ -16,7 +16,7 @@ class SessionController extends Controller
     {
         $student = Auth::guard('student')->user();
         $studentId = Auth::guard('student')->id();
-        $sessionOnline = SessionOnline::with(['mentoringSession.mentor', 'mentoringSession.subject'])->findOrFail($id);
+        $sessionOnline = SessionOnline::with(['mentoringSession.mentor', 'mentoringSession.subject','mentoringSession.material'])->findOrFail($id);
 
         $hasAccess = Booking::where('student_id', $studentId)
             ->where('mentoring_session_id', $sessionOnline->mentoring_session_id)
@@ -42,7 +42,7 @@ class SessionController extends Controller
     {
         $student = Auth::guard('student')->user();
         $studentId = Auth::guard('student')->id();
-        $sessionOffline = SessionOffline::with('mentoringSession.mentor')->findOrFail($id);
+        $sessionOffline = SessionOffline::with('mentoringSession.mentor','mentoringSession.material','mentoringSession.subject')->findOrFail($id);
 
         $hasAccess = Booking::where('student_id', $studentId)
             ->where('mentoring_session_id', $sessionOffline->mentoring_session_id)
@@ -55,8 +55,12 @@ class SessionController extends Controller
 
         $student = Auth::guard('student')->user();
 
+        $averageRating = $sessionOffline->mentoringSession->mentor->ratings()->avg('rating'); // Menghitung rata-rata rating
+        $sessionOffline->mentoringSession->mentor->average_rating = $averageRating ?: 0;
+
         return Inertia::render('Authenticated/Student/Session/Offline/Offline', [
             'sessionOffline' => $sessionOffline,
+            'averageRating' => $sessionOffline->mentoringSession->mentor->average_rating, // Mengirimkan rata-rata rating ke komponen
             'student' => $student,
             'mentorLocation' => [
                 'latitude' => $sessionOffline->mentoringSession->latitude,

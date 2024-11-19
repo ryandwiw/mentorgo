@@ -125,7 +125,7 @@ const StudentDashboard = ({ hasActiveSessions, activeSessions }) => {
                                     onOpenModal={handleCreateSessionClick}
                                     isProfileComplete={isProfileComplete}
                                     user={student} role="student"
-
+                                    average_rating={session.mentor.average_rating}
                                 />
                             );
                         })

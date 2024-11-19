@@ -10,39 +10,40 @@ const postData = [
     {
         name: "Muhammad Aulia Rizky",
         profession: 'Politeknik Negeri Malang',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        comment: 'Pengalaman saya menggunakan layanan ini sangat luar biasa, mentor yang saya temui sangat membantu dalam memahami materi kuliah.',
         imgSrc: '/assets/testimonial/user.svg',
     },
     {
         name: "Laila Wulandari",
         profession: 'Politeknik Negeri Jember',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        comment: 'Sangat puas dengan kualitas mentoring yang diberikan. Mentor sangat sabar dan menjelaskan materi dengan cara yang mudah dimengerti.',
         imgSrc: '/assets/mentor/user2.png',
     },
     {
         name: "Titi Dwi Kusuma ",
-        profession: 'UIN Sunan Kalijaga Yogyakarta ',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        profession: 'UIN Sunan Kalijaga Yogyakarta',
+        comment: 'Layanan ini sangat membantu saya dalam memahami topik-topik yang sulit. Saya merasa lebih percaya diri setelah mengikuti sesi mentoring.',
         imgSrc: '/assets/mentor/user3.png',
     },
     {
         name: "Ahmad Ridho",
         profession: 'Universitas Negeri Malang',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        comment: 'Mentor yang saya dapat sangat berkompeten dan komunikatif. Pengalaman yang sangat positif dan bermanfaat.',
         imgSrc: '/assets/mentor/user1.png',
     },
     {
         name: "Nabila Luthfia Azmi",
         profession: 'Universitas Negeri Malang',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        comment: 'Sangat puas dengan proses pembelajaran yang fleksibel. Mentor memberikan penjelasan yang sangat jelas dan membantu saya mencapai tujuan akademik.',
         imgSrc: '/assets/mentor/user2.png',
     },
     {
         name: "Azura",
         profession: 'UIN BANDUNG',
-        comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour',
+        comment: 'Mentor sangat membantu dalam menjawab pertanyaan saya dan memberikan penjelasan yang lebih dalam tentang materi yang saya pelajari.',
         imgSrc: '/assets/mentor/user3.png',
     },
+
 ];
 
 // CAROUSEL SETTINGS
@@ -113,7 +114,7 @@ export default class MultipleItems extends Component {
                                             <StarIcon width={20} className="text-gold" />
                                             <StarIcon width={20} className="text-gold" />
                                             <StarIcon width={20} className="text-gold" />
-                                            <StarIcon width={20} className="text-lightgray" />
+                                            <StarIcon width={20} className="text-gold" />
                                         </div>
                                     </div>
                                 </div>
