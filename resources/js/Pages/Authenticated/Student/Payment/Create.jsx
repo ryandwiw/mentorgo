@@ -1,6 +1,7 @@
 import AuthLayout from '@/Layouts/AuthenticatedLayout/AuthLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
-import React from 'react';
+import React, { useState } from 'react';
+import { FaCcVisa, FaWallet, FaCcMastercard, FaPaypal } from 'react-icons/fa';
 
 const Create = ({ booking }) => {
     const { data, setData, post, processing, errors } = useForm({
@@ -8,6 +9,8 @@ const Create = ({ booking }) => {
         amount: booking.total_price,
         payment_method: 'credit_card',
     });
+
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,6 +23,18 @@ const Create = ({ booking }) => {
             currency: 'IDR',
         });
         return formatter.format(amount);
+    };
+
+    const options = [
+        { value: 'credit_card', label: 'Credit Card', icon: <FaCcVisa className="mr-2 text-blue-500" /> },
+        { value: 'e-wallet', label: 'E-Wallet', icon: <FaWallet className="mr-2 text-green-500" /> },
+        { value: 'bank_transfer', label: 'Bank Transfer', icon: <FaCcMastercard className="mr-2 text-red-500" /> },
+        { value: 'paypal', label: 'PayPal', icon: <FaPaypal className="mr-2 text-yellow-500" /> },
+    ];
+
+    const handleSelect = (option) => {
+        setData('payment_method', option.value);
+        setIsOpen(false);
     };
 
     return (
@@ -37,58 +52,87 @@ const Create = ({ booking }) => {
                     </div>
                     <form onSubmit={handleSubmit} className="mx-auto max-w-screen-xl px-4 2xl:px-0">
 
-                        <div className="mt-6 space-y-4 border-b border-t border-gray-200 py-8 dark:border-gray-700 sm:mt-8">
+                        <div className="mt-6 space-y-6 border-b border-t border-gray-200 py-8 dark:border-gray-700 sm:mt-8">
                             <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Billing Information</h4>
 
-                            <dl>
-                                <dt className="text-base font-medium text-gray-900 dark:text-white">Mentoring Session</dt>
-                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{booking.mentoring_session?.title}</dd>
-                            </dl>
-
-                            <dl>
-                                <dt className="text-base font-medium text-gray-900 dark:text-white">Tipe Sesi</dt>
-                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{booking.mentoring_session?.session_type}</dd>
-                            </dl>
-
-                            <dl>
-                                <dt className="text-base font-medium text-gray-900 dark:text-white">Booking ID</dt>
-                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{booking.id}</dd>
-                            </dl>
-
-                            <dl>
-                                <dt className="text-base font-medium text-gray-900 dark:text-white">Total Amount</dt>
-                                <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{formatRupiah(booking.total_price)}</dd>
-                            </dl>
-
-                            <div className="mb-6">
-                                <label className="block text-sm font-medium text-gray-700">Payment Method</label>
-                                <select
-                                    value={data.payment_method}
-                                    onChange={e => setData('payment_method', e.target.value)}
-                                    className="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 hover:border-blue-500"
-                                    required
-                                >
-                                    <option value="credit_card">Credit Card</option>
-                                    <option value="e-wallet">E-Wallet</option>
-                                    <option value="bank_transfer">Bank Transfer</option>
-                                </select>
-                                {errors.payment_method && <div className="text-red-500 mt-1 text-sm">{errors.payment_method}</div>}
+                            <div className="bg-white shadow-lg rounded-lg p-6">
+                                <h5 className="text-md font-semibold text-gray-800 dark:text-gray-200">Mentoring Session Details</h5>
+                                <div className="mt-4 space-y-2">
+                                    <dl className="flex justify-between">
+                                        <dt className="text-base font-medium text-gray-900 dark:text-white">Session Title</dt>
+                                        <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{booking.mentoring_session?.title}</dd>
+                                    </dl>
+                                    <dl className="flex justify-between">
+                                        <dt className="text-base font-medium text-gray-900 dark:text-white">Session Type</dt>
+                                        <dd className="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">{booking.mentoring_session?.session_type}</dd>
+                                    </dl>
+                                </div>
                             </div>
 
-                            <div className="flex justify-center gap-4 sm:flex sm:items-center">
+                            <div className="bg-gray-100 shadow-lg rounded-lg p-6">
+                                <h5 className="text-md font-semibold text-gray-800 dark:text-gray-200">Payment Summary</h5>
+                                <div className="mt-4 space-y-2">
+                                    <dl className="flex justify-between">
+                                        <dt className="text-base font-medium text-gray-700 dark:text-white">Total Amount</dt>
+                                        <dd className="mt-1 text-xl font-semibold text-gray-900 dark:text-gray-100">{formatRupiah(booking.total_price)}</dd>
+                                    </dl>
+                                    <dl className="flex justify-between">
+                                        <dt className="text-sm font-light text-gray-500 dark:text-gray-400">Booking ID</dt>
+                                        <dd className="mt-1 text-sm font-light text-gray-500 dark:text-gray-400">{booking.id}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+
+
+                        <div className="mb-6">
+                            <label className="block text-sm font-medium text-gray-700">Payment Method</label>
+                            <div className="relative mt-1">
                                 <button
-                                    type="submit"
-                                    disabled={processing}
-                                    className={`w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover :text-white dark:focus:ring-gray-700 transition duration-200 transform hover:scale-105 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                    type="button"
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className="block w-full border border-gray-300 rounded-md p-3 text-left focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 hover:border-blue-500 flex items-center"
                                 >
-                                    {processing ? 'Processing ...' : 'Bayar'}
+                                    {data.payment_method
+                                        ? options.find(option => option.value === data.payment_method)?.icon
+                                        : null}
+                                    <span className="ml-2">
+                                        {data.payment_method
+                                            ? options.find(option => option.value === data.payment_method)?.label
+                                            : 'Select Payment Method'}
+                                    </span>
                                 </button>
+                                {isOpen && (
+                                    <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg">
+                                        {options.map(option => (
+                                            <div
+                                                key={option.value}
+                                                onClick={() => handleSelect(option)}
+                                                className="flex items-center p-2 cursor-pointer hover:bg-gray-100"
+                                            >
+                                                {option.icon}
+                                                <span className="ml-2">{option.label}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
+                            {errors.payment_method && <div className="text-red-500 mt-1 text-sm">{errors.payment_method}</div>}
                         </div>
-                    </form>
+
+                        <div className="flex justify-center gap-4 sm:flex sm:items-center">
+                            <button
+                                type="submit"
+                                disabled={processing}
+                                className={`w-auto max-w-xs rounded-lg border border-gray-200 bg-blue-500 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-700 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 transition duration-200 transform hover:scale-105 ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            >
+                                {processing ? 'Processing ...' : 'Bayar'}
+                            </button>
+                        </div>
                 </div>
-            </section>
-        </AuthLayout>
+            </form>
+        </div>
+            </section >
+        </AuthLayout >
     );
 }
 
